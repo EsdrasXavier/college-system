@@ -1,14 +1,13 @@
-const express = require('express'),
-  app = express(),
-  port = process.env.PORT || 3000,
-  bodyParser = require('body-parser');
+const express = require('express');
+const routes = require('./api/routes');
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+require('./api/db');
 
-const routes = require('./api/routes/msgRoutes');
-routes(app);
+const app = express();
+port = process.env.PORT || 3000;
 
+app.use(express.json());
+app.use(routes);
 app.listen(port);
 
-console.log('Message RESTful API server started on: ' + port);
+console.log('API server started on: ' + port);
