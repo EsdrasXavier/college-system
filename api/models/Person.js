@@ -15,6 +15,8 @@ class Person extends Model {
 
   static associate(models) {
     this.hasMany(models.Address, { foreignKey: 'user_id', as: 'addresses' });
+    this.hasOne(models.Registration, { foreignKey: 'user_id', as: 'registration' });
+    this.hasOne(models.Authority, { foreignKey: 'user_id', as: 'authority' });
   }
 }
 

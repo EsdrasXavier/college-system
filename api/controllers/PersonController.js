@@ -2,6 +2,19 @@ const Person = require('../models/Person');
 
 
 module.exports = {
+  async findOne(req, res) {
+    const { user_id } = req.params;
+    const person = await Person.findByPk(user_id, {
+      include: [
+        { association: 'registration' },
+        { association: 'authority' },
+        { association: 'addresses' }
+      ]
+    });
+
+    return res.json(person);
+  },
+
   async index(req, res) {
     const persons = await Person.findAll();
 
