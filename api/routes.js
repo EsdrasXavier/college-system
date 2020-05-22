@@ -3,6 +3,7 @@ const PersonController = require('./controllers/PersonController');
 const AddressesController = require('./controllers/AddressesController');
 const RegistrationController = require('./controllers/RegistrationController');
 const AuthorityController = require('./controllers/AuthorityController');
+const BillingController = require('./controllers/BillingController');
 
 const routes = express.Router();
 
@@ -21,5 +22,8 @@ routes.get('/registration', RegistrationController.all);
 routes.post('/persons/:user_id/authority', AuthorityController.store);
 routes.get('/persons/:user_id/authority', AuthorityController.index);
 
+
+routes.post('/persons/:user_id/billing', BillingController.store);
+routes.get('/persons/:user_id/billing', BillingController.index);
 
 module.exports = routes;
