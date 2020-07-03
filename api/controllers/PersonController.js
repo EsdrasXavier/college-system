@@ -1,5 +1,6 @@
 const Person = require('../models/Person');
-
+const jwtOptions = require('../config/config');
+const jwt = require('jsonwebtoken');
 
 module.exports = {
   async findOne(req, res) {
@@ -28,5 +29,25 @@ module.exports = {
     const person = await Person.create({ name, password, login });
 
     return res.json(person);
+  },
+
+  async login(req, res) {
+    const { login, password } = req.body;
+
+    if (login && password) {
+      let user = await Person.findOne({ where: { login } });
+
+      if (!user) {
+        res.status(401).json({ message: 'No such user found' });
+      }
+
+      if (user.password === password) {
+        let payload = { id: user.id };
+        let token = jwt.sign(payload, jwtOptions.jwtSecret);
+        res.json({ msg: 'ok', token: token });
+      } else {
+        res.status(401).json({ msg: 'Password is incorrect' });
+      }
+    }
   }
 };

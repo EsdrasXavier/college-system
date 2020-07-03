@@ -1,11 +1,13 @@
 const express = require('express');
 const routes = require('./api/routes');
+const auth = require("./api/controllers/auth.js")();
 
 require('./api/db');
 
 const app = express();
-port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
+app.use(auth.initialize());
 app.use(express.json());
 app.use(routes);
 app.listen(port);

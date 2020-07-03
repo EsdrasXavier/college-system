@@ -14,16 +14,22 @@ routes.post('/persons', PersonController.store);
 routes.post('/persons/:user_id/addresses', AddressesController.store);
 routes.get('/persons/:user_id/addresses', AddressesController.index);
 
+// Status de matricula de user
 routes.post('/persons/:user_id/registration', RegistrationController.store);
 routes.get('/persons/:user_id/registration', RegistrationController.index);
 
+// Busca todos os status de matricula
 routes.get('/registration', RegistrationController.all);
 
+// Autoridades / Permissões
 routes.post('/persons/:user_id/authority', AuthorityController.store);
 routes.get('/persons/:user_id/authority', AuthorityController.index);
 
-
+// Boleto
 routes.post('/persons/:user_id/billing', BillingController.store);
 routes.get('/persons/:user_id/billing', BillingController.index);
+
+
+routes.post('/login', PersonController.login);
 
 module.exports = routes;
