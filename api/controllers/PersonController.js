@@ -12,14 +12,15 @@ module.exports = {
         { association: 'authority' },
         { association: 'addresses' },
         { association: 'billings' }
-      ]
+      ],
+      attributes: ['id', 'name', 'createdAt', 'updatedAt', 'login']
     });
 
     return res.json(person);
   },
 
   async index(req, res) {
-    const persons = await Person.findAll();
+    const persons = await Person.findAll({ attributes: ['id', 'name', 'createdAt', 'updatedAt', 'login'], });
 
     return res.json(persons);
   },
