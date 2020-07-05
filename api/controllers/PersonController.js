@@ -38,13 +38,13 @@ module.exports = {
       let user = await Person.findOne({ where: { login } });
 
       if (!user) {
-        res.status(401).json({ message: 'No such user found' });
+        res.status(401).json({ msg: 'No such user found' });
       }
 
       if (user.password === password) {
         let payload = { id: user.id };
         let token = jwt.sign(payload, jwtOptions.jwtSecret);
-        res.json({ msg: 'ok', token: token });
+        res.json({ msg: 'ok', id: user.id, name: user.name, token: token });
       } else {
         res.status(401).json({ msg: 'Password is incorrect' });
       }

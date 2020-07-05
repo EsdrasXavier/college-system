@@ -30,6 +30,8 @@ routes.post('/persons/:user_id/billing', BillingController.store);
 routes.get('/persons/:user_id/billing', BillingController.index);
 
 
+routes.put('/billing/pay/:billing_id', BillingController.updateValue);
+
 routes.post('/login', PersonController.login);
 
 module.exports = routes;

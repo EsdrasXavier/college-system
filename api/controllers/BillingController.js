@@ -31,5 +31,14 @@ module.exports = {
     });
 
     return res.json(billing);
+  },
+
+  async updateValue(req, res) {
+    const { billing_id } = req.params;
+
+    const billing = await Billing.findByPk(billing_id);
+    const newBilling = await billing.update({ actual_cost: (billing.value - billing.scholarship_value) });
+
+    return res.json(newBilling);
   }
 };
