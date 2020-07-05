@@ -1,7 +1,6 @@
 const Person = require('../models/Person');
 const jwtOptions = require('../config/config');
 const jwt = require('jsonwebtoken');
-const { update } = require('../models/Person');
 
 module.exports = {
   async findOne(req, res) {
