@@ -10,6 +10,7 @@ const routes = express.Router();
 routes.get('/persons', PersonController.index);
 routes.get('/persons/:user_id', PersonController.findOne);
 routes.post('/persons', PersonController.store);
+routes.put('/persons/:user_id', PersonController.update);
 
 routes.post('/persons/:user_id/addresses', AddressesController.store);
 routes.get('/persons/:user_id/addresses', AddressesController.index);
